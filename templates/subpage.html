@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <style>
+
+            .selector{
+                background-color: grey;
+                border-style: solid;
+                border-color: darkgray;
+                border-radius: 20px 30px 30px 20px;
+                border-width: 10px;
+                height: 10%; 
+                width: 75%;                               
+                font-size: 100px;
+                text-align: center;
+                color: black;
+                padding: 100px;
+                margin: auto;
+                margin-top: 10%;
+            }
+
+            .submitter{
+                background-color: rgb(69, 69, 69);
+                border-style: solid;
+                border-color: rgb(57, 57, 57);
+                border-radius: 20px 30px 30px 20px;
+                border-width: 10px;
+                height: 20%; 
+                width: 95%;                               
+                font-size: 100px;
+                color: black;
+                padding: 100px;
+                margin: auto;
+                margin-top: 10%;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                cursor: pointer
+            }
+
+            .slidecontainer {
+                display: flex;
+                justify-content: space-evenly;
+                height: 40%;
+            }
+
+            .slider {
+                appearance: slider-vertical;
+                
+            }
+
+        </style>
+        <title>Lights - {{function}}</title>
+    </head>
+    <body style="background-color: black; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+
+        <div>
+            <form method="post" action="/solid">
+            <div class="slidecontainer">    
+                <input type="range" class="slider" min="0" max="255" value={{ R }} name = "R">
+                <input type="range" class="slider" min="0" max="255" value={{ G }} name = "G">
+                <input type="range" class="slider" min="0" max="255" value={{ B }} name = "B">
+            </div>
+            <div style="text-align: center;">
+                <input type="submit" value="Submit" class="submitter">
+            </div>
+            </form>
+        </div>
+
+        <a href="/" style="text-decoration: none;">
+            <div class="selector">Home</div>
+        </a>
+    </body>
+</html>

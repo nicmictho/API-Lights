@@ -1,30 +1,35 @@
-from fastapi import FastAPI, Form
-from typing import Annotated
+from fastapi import FastAPI, Form, Request
 from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
 import uvicorn
 from pydantic import BaseModel
 
 app = FastAPI()
+templates = Jinja2Templates(directory="templates")
 
-class Colour(BaseModel):
-      R:int
-      G:int
-      B:int
+current_function = 'Solid'
 
 @app.get("/", response_class=HTMLResponse)
 def test():
     with open("homepage.html") as page:
         return page.read()
 
-@app.get("/solid", response_class=HTMLResponse)
-def solid_get():
-        with open("subpages\solid.html") as page:
-            return page.read()
-        
-@app.post("/solid")
-def solid_post(fname):
-    return fname
+@app.get("/API")
+def tell_the_lights(r,g,b):
+     pass
 
+@app.get("/solid", response_class=HTMLResponse)
+def solid_get(request: Request, R:int = 0, G:int = 0, B:int = 0):
+    global current_function
+    return templates.TemplateResponse(
+        name="subpage.html", context={"request": request, "R": R, "G": G, "B": B, 'function': current_function}
+        )
+
+@app.post("/solid", response_class=HTMLResponse)
+def solid_post(request: Request, R: int = Form(...), G: int = Form(...), B: int = Form(...)):
+    global current_function
+    print(R,G,B)
+    return solid_get(request, R, G, B)
 
 @app.get("/aura", response_class=HTMLResponse)
 def aura_get():
