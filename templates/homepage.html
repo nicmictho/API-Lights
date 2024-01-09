@@ -16,17 +16,21 @@
                 margin-top: 10%;
             }
         </style>
-        <title>Lights - Home</title>
+        <title>Lights</title>
     </head>
     <body style="background-color: black; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
+        <div style="text-align: center; color: white;">
+            <h1>Currently showing {{ function }}</h1>
+            <h2>{{R}} | {{G}} | {{B}}</h2>
+        </div>
         <a href="/solid" style="text-decoration: none;">
             <div class="selector">Solid</div>
         </a>
         <a href="/aura" style="text-decoration: none;">
             <div class="selector">Aura</div>
         </a>
-        <a href="/flash" style="text-decoration: none;">
-            <div class="selector">Flash</div>
+        <a href="/moving" style="text-decoration: none;">
+            <div class="selector">Moving</div>
         </a>
     </body>
 </html>
