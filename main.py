@@ -17,6 +17,11 @@ current_colour = {
 current_function = 'Solid'
 lights: list = [(0,0,0)]*30
 
+funcs = {
+    'Solid' : functions.solid,
+    'Aura'  : functions.aura
+}
+
 @app.get("/", response_class=HTMLResponse)
 def test(request: Request):
     global current_colour
@@ -30,7 +35,7 @@ def test(request: Request):
 
 @app.get("/API")
 def tell_the_lights(current_colour = current_colour):
-    return functions.solid(current_colour)
+    return funcs[current_function](current_colour)
 
 @app.get("/solid", response_class=HTMLResponse)
 def solid_get(request: Request, R:int = current_colour['R'], G:int = current_colour['G'], B:int = current_colour['B']):
